@@ -5,7 +5,7 @@ buildscript {
         buildToolsVersion = "33.0.0"
         minSdkVersion = 21
         compileSdkVersion = 33
-        targetSdkVersion = 33,
+        targetSdkVersion = 33
         appCompatVersion = "1.4.2"      
         googlePlayServicesLocationVersion = "20.0.0"    
         // We use NDK 23 which has both M1 support and is the side-by-side NDK version from AGP.
@@ -19,10 +19,15 @@ buildscript {
         classpath("com.android.tools.build:gradle:7.3.1")
         classpath("com.facebook.react:react-native-gradle-plugin")
     }
-    maven {
+   
+}
+allprojects {   // <-- NOTE:  allprojects container -- If you don't see this, create it.
+    repositories {
+        maven {
         url("${project(':react-native-background-fetch').projectDir}/libs")
     }
      maven {
         url("${project(':react-native-background-geolocation').projectDir}/libs")
+    }
     }
 }
