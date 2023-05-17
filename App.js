@@ -6,16 +6,19 @@
  */
 
 import React from 'react';
-import {Button, SafeAreaView, StyleSheet, View} from 'react-native';
+import {Button, SafeAreaView} from 'react-native';
 import BackgroundGeolocation from 'react-native-background-geolocation';
 
 function App() {
-  const BACKEND_URL = '192.168.1.76:9000/';
+  const BACKEND_URL = '';
 
   const startGeolocation = () => {
+    BackgroundGeolocation.onLocation(() => {
+      console.log('Location send');
+    });
     BackgroundGeolocation.ready({
       desiredAccuracy: BackgroundGeolocation.DESIRED_ACCURACY_HIGH,
-      distanceFilter: 50,
+      distanceFilter: 20,
       stopTimeout: 10,
       debug: true, // <-- enable this hear sounds for background-geolocation life-cycle.
       logLevel: BackgroundGeolocation.LOG_LEVEL_VERBOSE,
