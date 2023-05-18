@@ -6,6 +6,11 @@
 		<string>en</string>
 		<key>CFBundleDisplayName</key>
 		<string>BackgroundGeolocation</string>
+		<key>BGTaskSchedulerPermittedIdentifiers</key>
+		<array>
+			<string>com.transistorsoft.customtask</string>
+			<string>com.transistorsoft.fetch</string>
+		</array>
 		<key>CFBundleExecutable</key>
 		<string>$(EXECUTABLE_NAME)</string>
 		<key>CFBundleIdentifier</key>
