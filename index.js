@@ -8,6 +8,15 @@ import {name as appName} from './app.json';
 import BackgroundGeolocation from 'react-native-background-geolocation';
 const BACKEND_URL = 'http://192.168.1.76:9000';
 
+const headlessTask = (eventName)=>{
+    console.log(eventName.name)
+    switch(eventName.name){
+      case "http": break;
+    }
+}
+
+BackgroundGeolocation.registerHeadlessTask(headlessTask)
+
 BackgroundGeolocation.onHttp(response => {
   console.log(response);
   console.log('RESPONSE RECEIVED');
