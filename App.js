@@ -13,8 +13,16 @@ function App() {
   const BACKEND_URL = 'http://192.168.1.76:9000';
 
   const startGeolocation = () => {
-    BackgroundGeolocation.start();
+    BackgroundGeolocation.requestPermission().then(permission => {
+      if (permission !== BackgroundGeolocation.AUTHORIZATION_STATUS_ALWAYS) {
+        console.log('PERMISSION ERROR');
+        // DISPLAY ALERT
+      } else {
+        BackgroundGeolocation.start();
+      }
+    });
   };
+
   return (
     <SafeAreaView>
       <Button
