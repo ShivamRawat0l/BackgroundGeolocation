@@ -8,17 +8,38 @@
 import React from 'react';
 import {Button, SafeAreaView, Text} from 'react-native';
 import BackgroundGeolocation from 'react-native-background-geolocation';
+import {request} from 'react-native-permissions';
+import {MOTION_PERMISSION, PermissionStatus} from './Permission';
 
 function App() {
   const BACKEND_URL = 'http://192.168.1.76:9000';
 
+  const handleMotionError = () => {
+    // show alert
+    console.log('Motion PERMISSION ERROR');
+  };
+
+  const onAllPermissionsAvailable = () => {
+    BackgroundGeolocation.start();
+  };
+
   const startGeolocation = () => {
     BackgroundGeolocation.requestPermission().then(permission => {
       if (permission !== BackgroundGeolocation.AUTHORIZATION_STATUS_ALWAYS) {
-        console.log('PERMISSION ERROR');
+        console.log('Location PERMISSION ERROR');
+
         // DISPLAY ALERT
       } else {
-        BackgroundGeolocation.start();
+        check(MOTION_PERMISSION).then(status => {
+          switch (status) {
+            case PermissionStatus.Unavailable:
+              
+            case PermissionStatus.Blocked:
+              handleMotionError();
+              break;
+            case 
+          }
+        });
       }
     });
   };
