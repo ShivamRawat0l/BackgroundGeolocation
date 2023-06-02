@@ -24,11 +24,19 @@ BackgroundGeolocation.onHttp(response => {
 });
 BackgroundGeolocation.onLocation(() => {
   console.log('Location send');
+  const currentTime = new Date();
+  const currentHour = currentTime.getHours();
+  // NOTE: Change the scheduled hours
+  if( currentHour > 20) // here 20 is 8:00 PM 
+  {
+    BackgroundGeolocation.stopSchedule(); 
+  }
 });
 BackgroundGeolocation.ready({
   desiredAccuracy: BackgroundGeolocation.DESIRED_ACCURACY_HIGH,
   distanceFilter: 20,
   stopTimeout: 10,
+  schedule: "1-7 05:00-20:00",
   debug: true, // <-- enable this hear sounds for background-geolocation life-cycle.
   logLevel: BackgroundGeolocation.LOG_LEVEL_VERBOSE,
   stopOnTerminate: false,
