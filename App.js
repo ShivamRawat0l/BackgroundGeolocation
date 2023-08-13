@@ -10,9 +10,9 @@ import { Button, SafeAreaView, Text } from 'react-native';
 import BackgroundGeolocation from 'react-native-background-geolocation';
 import { request } from 'react-native-permissions';
 import { MOTION_PERMISSION, PermissionStatus } from './Permission';
+import { BACKEND_URL, start, stopBackgroundGeolocation } from '.';
 
 function App() {
-  const BACKEND_URL = 'http://192.168.1.76:9000';
 
   const handleMotionError = () => {
     // show alert
@@ -28,20 +28,25 @@ function App() {
       if (permission !== BackgroundGeolocation.AUTHORIZATION_STATUS_ALWAYS) {
         console.log('Location PERMISSION ERROR');
     }
+    else {
+      BackgroundGeolocation.start()
+    }
   });
+}
 
   return (
     <SafeAreaView>
       <Button
         title="Start Geolocation"
         onPress={() => {
-          startGeolocation();
+          //startGeolocation();
+          start()
         }}
       />
       <Button
         title="Stop Geolocation"
         onPress={() => {
-          BackgroundGeolocation.stop();
+      stopBackgroundGeolocation()
         }}
       />
       <Button
